@@ -1,60 +1,64 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="container">
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img :src="logo" alt="Buefy">
+        </a>
+        <a class="navbar-item">
+          <b-icon pack="fa" icon="github"></b-icon>
+        </a>
+        <a class="navbar-item">
+          <b-icon pack="fa" icon="twitter"></b-icon>
+        </a>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <b-dropdown v-model="navigation" position="is-bottom-left">
+            <a class="navbar-item" slot="trigger">
+              <span>Login</span>
+              <b-icon icon="arrow_drop_down"></b-icon>
+            </a>
+
+            <b-dropdown-item custom paddingless>
+              <form action="">
+                <div class="modal-card" style="width:300px;">
+                  <section class="modal-card-body">
+                    <b-field label="Email">
+                      <b-input type="email" placeholder="Your email" required>
+                      </b-input>
+                    </b-field>
+
+                    <b-field label="Password">
+                      <b-input type="password" password-reveal placeholder="Your password" required>
+                      </b-input>
+                    </b-field>
+
+                    <b-checkbox>Remember me</b-checkbox>
+                  </section>
+                  <footer class="modal-card-foot">
+                    <button class="button is-primary">Login</button>
+                  </footer>
+                </div>
+              </form>
+            </b-dropdown-item>
+          </b-dropdown>
+        </div>
+      </div>
+    </nav>
   </div>
 </template>
 
 <script>
+import logo from './assets/logo.png'
+
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  data() {
+    return { logo }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
