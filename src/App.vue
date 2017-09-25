@@ -1,52 +1,34 @@
 <template>
-  <div class="container">
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <a class="navbar-item">
-          <img :src="logo" alt="Buefy">
-        </a>
-        <a class="navbar-item">
-          <b-icon pack="fa" icon="github"></b-icon>
-        </a>
-        <a class="navbar-item">
-          <b-icon pack="fa" icon="twitter"></b-icon>
-        </a>
-      </div>
+  <div>
+    <div class="container is-mobile">
+      <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <img :src="logo" alt="Buefy">
+          </a>
+        </div>
+      </nav>
+    </div>
 
-      <div class="navbar-menu">
-        <div class="navbar-end">
-          <b-dropdown v-model="navigation" position="is-bottom-left">
-            <a class="navbar-item" slot="trigger">
-              <span>Login</span>
-              <b-icon icon="arrow_drop_down"></b-icon>
+    <router-view></router-view>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <strong>openPackTrack</strong> dikembangkan oleh
+            <a href="https://github.com/PinguinJantan">Tim Pinguin Jantan</a>. Didukung oleh
+            <a href="http://sepatu.fans.co.id/">Sepatu Fans</a>. Kode sumber berlisensi
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+          </p>
+          <p>
+            <a class="icon" target="blank" href="https://github.com/PinguinJantan">
+              <i class="fa fa-github"></i>
             </a>
-
-            <b-dropdown-item custom paddingless>
-              <form action="">
-                <div class="modal-card" style="width:300px;">
-                  <section class="modal-card-body">
-                    <b-field label="Email">
-                      <b-input type="email" placeholder="Your email" required>
-                      </b-input>
-                    </b-field>
-
-                    <b-field label="Password">
-                      <b-input type="password" password-reveal placeholder="Your password" required>
-                      </b-input>
-                    </b-field>
-
-                    <b-checkbox>Remember me</b-checkbox>
-                  </section>
-                  <footer class="modal-card-foot">
-                    <button class="button is-primary">Login</button>
-                  </footer>
-                </div>
-              </form>
-            </b-dropdown-item>
-          </b-dropdown>
+          </p>
         </div>
       </div>
-    </nav>
+    </footer>
   </div>
 </template>
 
