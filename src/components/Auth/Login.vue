@@ -3,14 +3,14 @@
     <div class="columns is-mobile">
       <div class="hero-body">
         <div class="column is-half is-offset-one-quarter">
-          <h1 class="title">Sign in</h1>
+          <h1 class="title">Login</h1>
 
           <b-field label="Username" type="is-success" message="This username is available">
-            <b-input value="johnsilver"></b-input>
+            <b-input :value="user.username"></b-input>
           </b-field>
 
           <b-field label="Password">
-            <b-input type="password" value="iwantmytreasure" password-reveal>
+            <b-input type="password" :value="user.password" password-reveal>
             </b-input>
           </b-field>
 
@@ -23,7 +23,14 @@
 
 <script>
 export default {
-  
+  data () {
+    return {
+      user: {
+        username: 'sikun',
+        password: 'passwkwk'
+      }
+    }
+  }
 }
 </script>
 

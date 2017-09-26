@@ -1,7 +1,11 @@
 <template>
-  <section>
-    <div class="container">
-        <h1>home</h1>
+  <section class="hero is-success is-fullheight">
+    <div class="columns is-mobile">
+      <div class="hero-body">
+        <div class="column is-half is-offset-one-quarter">
+          <h1 class="title">Home Page</h1>
+        </div>
+      </div>
     </div>
   </section>
 </template>

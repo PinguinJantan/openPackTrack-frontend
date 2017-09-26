@@ -3,9 +3,14 @@
     <div class="container is-mobile">
       <nav class="navbar is-transparent">
         <div class="navbar-brand">
-          <a class="navbar-item">
+          <router-link to="/" tag="span" style="cursor: pointer" class="navbar-item">
             <img :src="logo" alt="Buefy">
-          </a>
+          </router-link>
+        </div>
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <router-link to="/login" tag="span" style="cursor: pointer" class="navbar-item">Login</router-link>
+          </div>
         </div>
       </nav>
     </div>
