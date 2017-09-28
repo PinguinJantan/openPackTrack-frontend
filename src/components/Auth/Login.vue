@@ -24,8 +24,6 @@
 </template>
 
 <script>
-let API_URL = 'http://localhost:3000'
-
 export default {
   data () {
     return {
@@ -35,20 +33,11 @@ export default {
   },
   methods: {
     login () {
-      console.log('menjalankan login')
-      console.log('username: ' + this.username)
-      console.log('password: ' + this.password)
-      this.axios({
-        url: API_URL + '/auth/login',
-        data: {
-          username: this.username,
-          password: this.password
-        },
-        method: 'POST'
-      }).then(response => {
-        console.log('get respon : ', response.data)
-      }).catch(err => {
-        console.log('Error when login : ', err)
+      this.$store.dispatch('login', { 
+        username: this.username,
+        password: this.password
+      }).then (() => {
+        this.$router.push('/dashboard')
       })
     }
   }
