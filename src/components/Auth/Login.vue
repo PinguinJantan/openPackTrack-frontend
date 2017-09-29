@@ -36,8 +36,6 @@ export default {
       this.$store.dispatch('login', { 
         username: this.username,
         password: this.password
-      }).then (() => {
-        this.$router.push('/dashboard')
       })
     }
   }
