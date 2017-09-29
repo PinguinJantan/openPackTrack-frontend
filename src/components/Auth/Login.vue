@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { isLoggedIn } from '../../utils/auth'
+
 export default {
   data () {
     return {
@@ -37,7 +39,15 @@ export default {
         username: this.username,
         password: this.password
       })
+    },
+    isNeedToLogin () {
+      if (isLoggedIn()) {
+        this.$router.push('/dashboard')
+      }
     }
+  },
+  mounted () {
+    this.isNeedToLogin()
   }
 }
 </script>

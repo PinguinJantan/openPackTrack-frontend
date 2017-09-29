@@ -38,7 +38,7 @@ export const store = new Vuex.Store({
         setIdToken(response.data.token)
       }).then(() => {
         console.log('login berhasil')
-        router.push({ path: '/dashboard' })
+        router.push('/dashboard')
       }).catch (err => {
         console.log('Error when login : ', err)
       })
