@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '../components/Home.vue'
 import Login from '../components/Auth/Login.vue'
 import Dashboard from '../components/Dashboard/Dashboard.vue'
+import Item from '../components/Item/Index.vue'
 
 import { requireAuth } from '../utils/auth'
 
@@ -13,7 +14,8 @@ export default new Router({
     routes: [
         { path: '/', name: 'Home', component: Home },
         { path: '/login', name: 'Login', component: Login },
-        { path: '/dashboard', name: 'Dashboard', beforeEnter: requireAuth, component: Dashboard }
+        { path: '/dashboard', name: 'Dashboard', beforeEnter: requireAuth, component: Dashboard },
+        { path: '/item', name: 'Item', beforeEnter: requireAuth, component: Item }
     ],
     mode: 'history'
 })

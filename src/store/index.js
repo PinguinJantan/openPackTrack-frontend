@@ -6,12 +6,13 @@ import { setIdToken } from '../utils/auth'
 
 Vue.use(Vuex)
 
-let API_URL = 'http://localhost:3000'
+let API_URL = 'http://fansdev.nurulirfan.com'
 
 export const store = new Vuex.Store({
   state: {
     user: null,
-    token: null
+    token: null,
+    apiUrl: API_URL
   },
   mutations: {
     setToken(state, payload) {
@@ -42,6 +43,14 @@ export const store = new Vuex.Store({
       }).catch (err => {
         console.log('Error when login : ', err)
       })
+    }
+  },
+  getters: {
+    token (state) {
+      return state.token
+    },
+    apiUrl (state) {
+      return state.apiUrl
     }
   }
 })
