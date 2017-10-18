@@ -67,7 +67,6 @@ export default {
       isNarrowed: false,
       isLoading: true,
       hasMobileCards: true,
-
       item: []
     }
   },
@@ -79,11 +78,6 @@ export default {
         url: this.$store.getters.apiUrl + '/api/item/all',
         headers: {'Authorization': 'Bearer ' + this.$store.getters.token}
       }).then((response) => {
-        // hapus ini nanti habis debugging
-        console.log('cetak item data: ' + response.data)
-        console.log('token: ' + this.$store.getters.token)
-        // ====================
-
         this.item = response.data
         this.isLoading = false
       }).catch((err) => {
