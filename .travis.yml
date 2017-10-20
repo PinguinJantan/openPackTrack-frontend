@@ -1,0 +1,31 @@
+language: node_js
+node_js:
+- "6"
+branches:
+  only:
+  - master
+before_install:
+- sudo apt-get -qq update
+- sudo apt-get install -y git-ftp
+- npm install vue-cli -g
+install:
+- npm install
+before_script:
+- git config --global user.name 'Pinguin Jantan Travis'
+- git config --global user.email 'mailpakgasing@gmail.com'
+script:
+- npm run build
+after_success:
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then mkdir .deploy && cd .deploy; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git init; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then touch index.html; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git add -A .; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git commit -m 'touch before update site'; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git config git-ftp.url $DEPLOY_URL; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git config git-ftp.user $DEPLOY_USR; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git config git-ftp.password $DEPLOY_PASWD; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git ftp catchup; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then cp ../index.html . && cp -r ../dist/ .; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git add -A .; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git commit -m 'Site updated by Pinguin Jantan via Travis CI'; fi
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git ftp push -f; fi
