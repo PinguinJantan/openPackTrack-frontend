@@ -1,26 +1,36 @@
 <template>
   <div>
+      <nav class="navbar">
     <div class="container is-mobile">
-      <nav class="navbar is-transparent">
         <div class="navbar-brand">
-          <router-link to="/" tag="span" style="cursor: pointer" class="navbar-item">
+          <router-link to="/" tag="a" style="cursor: pointer" class="navbar-item">
             <img :src="logo" alt="Buefy">
           </router-link>
         </div>
         <div class="navbar-menu">
           <div class="navbar-end">
             <router-link
-              v-if="!isLoggedIn"
-              to="/login" 
-              tag="div" 
-              style="cursor: pointer" 
-              class="navbar-item">Login
+            v-if="!isLoggedIn"
+            to="/login" 
+            tag="div" 
+            style="cursor: pointer" 
+            class="navbar-item">Login
             </router-link>
-            <div v-if="isLoggedIn" @click="logout" class="navbar-item" style="cursor:pointer">Logout</div>
+            <b-dropdown v-if="isLoggedIn" position="is-bottom-left">
+              <a class="navbar-item" slot="trigger">
+                <span>Menu </span>
+                <b-icon icon="caret-down" size="is-small"></b-icon>
+              </a>
+
+              <b-dropdown-item @click="logout">
+                <b-icon icon="sign-out"></b-icon>
+                Logout
+              </b-dropdown-item>
+            </b-dropdown>
           </div>
         </div>
-      </nav>
     </div>
+      </nav>
 
     <router-view></router-view>
 
@@ -72,4 +82,7 @@ export default {
 </script>
 
 <style lang="scss">
+nav {
+  box-shadow: 0 0 1px rgba(0,0,0,0.25);
+}
 </style>

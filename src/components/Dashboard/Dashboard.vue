@@ -6,7 +6,7 @@
           <div class="column is-10 has-text-centered">
             <h1 class="title">Dashboard</h1>
             <div class="columns is-multiline">
-              <div v-for="i in 9" class="column is-2 has-text-white has-text-centered">
+              <div class="column is-2 has-text-white has-text-centered">
                 <router-link to="/item" tag="div" style="cursor: pointer" class="icon box box-item" title="Item">
                   <b-icon
                     icon="cube"
