@@ -10,7 +10,9 @@ import { store } from './store'
 
 import 'buefy/lib/buefy.css'
 
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultIconPack: 'fa'
+})
 Vue.use(VueAxios, axios)
 
 new Vue({

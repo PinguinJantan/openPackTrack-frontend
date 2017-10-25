@@ -9,7 +9,14 @@
         </div>
         <div class="navbar-menu">
           <div class="navbar-end">
-            <router-link to="/login" tag="span" style="cursor: pointer" class="navbar-item">Login</router-link>
+            <router-link
+              v-if="!isLoggedIn"
+              to="/login" 
+              tag="div" 
+              style="cursor: pointer" 
+              class="navbar-item">Login
+            </router-link>
+            <div v-if="isLoggedIn" @click="logout" class="navbar-item" style="cursor:pointer">Logout</div>
           </div>
         </div>
       </nav>
@@ -38,11 +45,28 @@
 </template>
 
 <script>
+import { isLoggedIn } from './utils/auth'
+
 import logo from './assets/logo.png'
 
 export default {
   data() {
     return { logo }
+  },
+  computed: {
+    isLoggedIn() {
+        return this.$store.getters.token !== null && this.$store.getters.token !== undefined
+      }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout').then(() => {
+        this.$router.push('/')
+      })
+    }
+  },
+  mounted() {
+    isLoggedIn()
   }
 }
 </script>

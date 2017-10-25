@@ -11,8 +11,19 @@
 </template>
 
 <script>
+import { isLoggedIn } from '../utils/auth'
+
 export default {
-  
+  methods: {
+    isNeedToLogin () {
+      if (isLoggedIn()) {
+        this.$router.push('/dashboard')
+      }
+    }
+  },
+  mounted () {
+    this.isNeedToLogin()
+  }
 }
 </script>
 
