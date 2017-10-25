@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import router from '../router'
-import { setIdToken } from '../utils/auth'
+import { setIdToken, clearIdToken } from '../utils/auth'
 
 Vue.use(Vuex)
 
@@ -43,6 +43,10 @@ export const store = new Vuex.Store({
       }).catch (err => {
         console.log('Error when login : ', err)
       })
+    },
+    logout({ commit }, payload) {
+      commit('setToken', null)
+      clearIdToken()
     }
   },
   getters: {

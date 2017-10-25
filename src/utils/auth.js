@@ -38,3 +38,8 @@ export function setTokenFromLocalStorageToVuex () {
   let token = getIdToken()
   store.commit('setToken', token)
 }
+
+// remove token from localStorage
+export function clearIdToken() {
+  localStorage.removeItem(ID_TOKEN_KEY);
+}
