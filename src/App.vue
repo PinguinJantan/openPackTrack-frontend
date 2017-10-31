@@ -1,7 +1,7 @@
 <template>
   <div>
-      <nav class="navbar">
-    <div class="container is-mobile">
+    <nav class="navbar is-light">
+      <div class="container is-mobile">
         <div class="navbar-brand">
           <router-link to="/" tag="a" style="cursor: pointer" class="navbar-item">
             <img :src="logo" alt="Buefy">
@@ -29,10 +29,12 @@
             </b-dropdown>
           </div>
         </div>
-    </div>
-      </nav>
+      </div>
+    </nav>
 
-    <router-view></router-view>
+    <section class="section">
+      <router-view></router-view>
+    </section>
 
     <footer class="footer">
       <div class="container">
@@ -82,7 +84,20 @@ export default {
 </script>
 
 <style lang="scss">
-nav {
+.navbar {
   box-shadow: 0 0 1px rgba(0,0,0,0.25);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+.is-light {
+  background-color: whitesmoke;
+  color: #363636;
+}
+.is-light:hover {
+  color: #000;
+}
+.section {
+  padding: 3rem 0;
 }
 </style>
