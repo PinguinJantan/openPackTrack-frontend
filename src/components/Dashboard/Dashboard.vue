@@ -6,16 +6,16 @@
           <div class="column is-10 has-text-centered">
             <h1 class="title">Dashboard</h1>
             <div class="columns is-multiline">
-              <div class="column is-2 has-text-white has-text-centered">
-                <router-link to="/item" tag="div" style="cursor: pointer" class="icon box box-item" title="Item">
+              <div v-for="dashboardMenu in dashboardMenus" class="column is-2 has-text-white has-text-centered">
+                <router-link :to="{name: dashboardMenu.name}" tag="div" :style="`cursor: pointer; background-color:${dashboardMenu.color}`" class="icon box box-item" :exact="dashboardMenu.name">
                   <b-icon
-                    icon="cube"
+                    :icon="dashboardMenu.icon"
                     size="is-large"
                     type="is-white"
-                    title="Item">
+                    :title="dashboardMenu.name">
                   </b-icon>
                 </router-link>
-                  <br>Item
+                  <br>{{dashboardMenu.name}}
               </div>
             </div>
           </div>
@@ -24,6 +24,24 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      dashboardMenus: [
+        { name: 'Item', icon: 'cube', color: 'rgb(243, 156, 18)' },
+        { name: 'User', icon: 'user', color: '#f0f' },
+        { name: 'Input Produk', icon: 'hand-pointer-o', color: '#fac' }
+      ]
+    }
+  },
+  computed: {
+
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 .hero-body {
