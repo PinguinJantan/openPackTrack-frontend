@@ -12,36 +12,55 @@ export const store = new Vuex.Store({
   state: {
     user: null,
     token: null,
-    apiUrl: API_URL
+    apiUrl: API_URL,
+    isError: false,
+    errorMessage: '',
   },
   mutations: {
     setToken(state, payload) {
       state.token = payload
+      setIdToken(payload)
+    },
+    setError(state, payload) {
+      state.isError = !payload.success;
+      state.errorMessage = payload.message;
+    },
+    resetError(state) {
+      state.isError = false;
+      state.errorMessage = '';
     }
   },
   actions: {
-    login ({ commit }, payload) {
-      console.log('menjalankan login')
-      console.log('username: ' + payload.username)
-      console.log('password: ' + payload.password)
-      
-      Vue.axios({
-        url: API_URL + '/auth/login',
-        data: {
-          username: payload.username,
-          password: payload.password
-        },
-        method: 'POST'
-      }).then (response => {
-        console.log('get respon : ', response.data)
-
-        commit('setToken', response.data.token)
-        setIdToken(response.data.token)
-      }).then(() => {
-        console.log('login berhasil')
-        router.push('/dashboard')
-      }).catch (err => {
-        console.log('Error when login : ', err)
+    login ({ commit, state }, payload) {
+      return new Promise((resolve, reject) => {
+        console.log('menjalankan login')
+        console.log('username: ' + payload.username)
+        console.log('password: ' + payload.password)
+        
+        Vue.axios({
+          url: API_URL + '/auth/login',
+          data: {
+            username: payload.username,
+            password: payload.password
+          },
+          method: 'POST'
+        }).then (response => {
+          let { data } = response;
+          console.log('get respon : ', data)
+          if(!data.success){
+            commit('setError', data)
+            resolve(false);
+  
+          } else {
+            commit('setToken', data.token);
+            console.log('login berhasil');
+            resolve(true);
+            // router.push('/dashboard');
+          }
+        }).catch (err => {
+          reject(err);
+          console.log('Error when login : ', err);
+        })
       })
     },
     logout({ commit }, payload) {
@@ -55,6 +74,12 @@ export const store = new Vuex.Store({
     },
     apiUrl (state) {
       return state.apiUrl
+    },
+    error (state) {
+      return {
+        isError: state.isError,
+        errorMessage: state.errorMessage
+      }
     }
   }
 })
