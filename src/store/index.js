@@ -15,6 +15,11 @@ export const store = new Vuex.Store({
     apiUrl: API_URL,
     isError: false,
     errorMessage: '',
+    menu: [
+      { name: 'Item', icon: 'cube', color: 'rgb(243, 156, 18)' },
+      { name: 'User', icon: 'user', color: '#f0f' },
+      { name: 'Input Produk', icon: 'hand-pointer-o', color: '#fac' }
+    ]
   },
   mutations: {
     setToken(state, payload) {

@@ -103,12 +103,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .navbar {
   box-shadow: 0 0 1px rgba(0,0,0,0.25);
   position: fixed;
   width: 100%;
-  z-index: 999;
+  height: 2.5rem;
+  z-index: 19;
 }
 .is-light {
   background-color: whitesmoke;
