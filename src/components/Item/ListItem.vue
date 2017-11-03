@@ -73,7 +73,22 @@ export default {
         url: this.$store.getters.apiUrl + '/api/item/all',
         headers: {'Authorization': 'Bearer ' + this.$store.getters.token}
       }).then((response) => {
-        this.item = response.data
+        console.log('lalala : ', response.data)
+        if(!response.data.success){
+                this.$snackbar.open({
+                    message: response.data.message,
+                    type: 'is-danger',
+                    position: 'is-bottom-left',
+                    actionText: 'Coba lagi',
+                    onAction: () => {
+                      this.fetchDataItem()
+                      this.$toast.open('Mencoba memuat ulang')
+                    }
+                })
+        } else {
+          this.item = response.data
+        }
+        
         this.isLoading = false
       }).catch((err) => {
         console.log('error when get data item: ', err)

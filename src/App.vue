@@ -40,7 +40,7 @@
       <div class="container">
         <div class="content has-text-centered">
           <p>
-            <strong>openPackTrack</strong> dikembangkan oleh
+            <strong>openPackTrack</strong> dikembangkan oleh 
             <a href="https://github.com/PinguinJantan">Tim Pinguin Jantan</a>. Didukung oleh
             <a href="http://sepatu.fans.co.id/">Sepatu Fans</a>. Kode sumber berlisensi
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
@@ -58,6 +58,7 @@
 
 <script>
 import { isLoggedIn } from './utils/auth'
+import { mapGetters } from 'vuex'
 
 import logo from './assets/logo.png'
 
@@ -66,15 +67,34 @@ export default {
     return { logo }
   },
   computed: {
+    ...mapGetters([
+      'error'
+    ]),
     isLoggedIn() {
-        return this.$store.getters.token !== null && this.$store.getters.token !== undefined
+      return this.$store.getters.token !== null && this.$store.getters.token !== undefined
+    }
+  },
+  watch: {
+    error(){
+      if(this.error.isError){
+        this.showErrorMessage(this.error.errorMessage)
       }
+    }
   },
   methods: {
     logout() {
       this.$store.dispatch('logout').then(() => {
         this.$router.push('/')
       })
+    },
+    showErrorMessage(message){
+      this.$snackbar.open({
+          duration: 50000,
+          message: message,
+          type: 'is-danger',
+          position: 'is-bottom-left'
+      })
+      this.$store.commit('resetError');
     }
   },
   mounted() {

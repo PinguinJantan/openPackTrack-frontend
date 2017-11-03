@@ -38,6 +38,10 @@ export default {
       this.$store.dispatch('login', { 
         username: this.username,
         password: this.password
+      }).then(isSuccess => {
+        if(isSuccess) {
+          this.$router.push('/dashboard') 
+        }
       })
     },
     isNeedToLogin () {
