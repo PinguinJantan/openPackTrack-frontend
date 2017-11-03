@@ -21,5 +21,7 @@ export default new Router({
         { path: '/input', name: 'Input Produk', beforeEnter: requireAuth, component: InputProduk },
         { path: '/user', name: 'User', beforeEnter: requireAuth, component: User }
     ],
-    mode: 'history'
+    mode: 'history',
+    linkActiveClass: "is-active",
+    linkExactActiveClass: "is-active"
 })
