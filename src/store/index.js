@@ -12,7 +12,12 @@ export const store = new Vuex.Store({
   state: {
     user: null,
     token: null,
-    apiUrl: API_URL
+    apiUrl: API_URL,
+    menu: [
+      { name: 'Item', icon: 'cube', color: 'rgb(243, 156, 18)' },
+      { name: 'User', icon: 'user', color: '#f0f' },
+      { name: 'Input Produk', icon: 'hand-pointer-o', color: '#fac' }
+    ]
   },
   mutations: {
     setToken(state, payload) {
@@ -22,8 +27,6 @@ export const store = new Vuex.Store({
   actions: {
     login ({ commit }, payload) {
       console.log('menjalankan login')
-      console.log('username: ' + payload.username)
-      console.log('password: ' + payload.password)
       
       Vue.axios({
         url: API_URL + '/auth/login',
@@ -35,8 +38,8 @@ export const store = new Vuex.Store({
       }).then (response => {
         console.log('get respon : ', response.data)
 
-        commit('setToken', response.data.token)
-        setIdToken(response.data.token)
+        commit('setToken', response.data.user.token)
+        setIdToken(response.data.user.token)
       }).then(() => {
         console.log('login berhasil')
         router.push('/dashboard')
