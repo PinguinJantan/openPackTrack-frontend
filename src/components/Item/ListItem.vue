@@ -74,7 +74,7 @@ export default {
         headers: {'Authorization': 'Bearer ' + this.$store.getters.token}
       }).then((response) => {
         console.log('lalala : ', response.data)
-        if(!response.data.success){
+        if(response.status != 200){
                 this.$snackbar.open({
                     message: response.data.message,
                     type: 'is-danger',
