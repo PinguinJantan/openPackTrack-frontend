@@ -73,6 +73,10 @@ export default {
       }).then(response => {
         console.log('berhasil submit item: ', response.data)
         this.$parent.close()
+        this.$toast.open({
+          message: 'Produk berhasil ditambahkan!',
+          type: 'is-success'
+        })
         this.isLoading = false
       }).catch(error => {
         console.log('error on create item: ', error)
