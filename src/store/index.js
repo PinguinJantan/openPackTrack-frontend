@@ -57,7 +57,7 @@ export const store = new Vuex.Store({
             resolve(false);
   
           } else {
-            commit('setToken', data.token);
+            commit('setToken', data.user.token);
             console.log('login berhasil');
             resolve(true);
             // router.push('/dashboard');
