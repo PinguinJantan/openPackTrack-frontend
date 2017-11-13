@@ -89,9 +89,6 @@ export default {
     return {
       isComponentModalActive: false,
       menus: this.$store.state.menu,
-      formProps: {
-
-      }
     }
   },
   methods: {
@@ -128,6 +125,5 @@ export default {
   }
   .button.is-outlined {
     background-color: whitesmoke;
-    border: 0;
   }
 </style>
