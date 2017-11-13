@@ -8,34 +8,34 @@
       </header>
       <section class="modal-card-body">
         <b-field label="SKU">
-          <b-input v-model="sku" type="text" placeholder="Kode SKU" required>
+          <b-input v-model="item.sku" type="text" placeholder="Kode SKU" required>
           </b-input>
         </b-field>
 
         <b-field label="Nama Produk">
-          <b-input v-model="name" type="text" required>
+          <b-input v-model="item.name" type="text" required>
           </b-input>
         </b-field>
 
         <b-field label="Warna Produk">
-          <b-input v-model="color" type="text" required>
+          <b-input v-model="item.color" type="text" required>
           </b-input>
         </b-field>
 
         <b-field label="Ukuran Produk">
-          <b-input v-model="size" type="text" required>
+          <b-input v-model="item.size" type="text" required>
           </b-input>
         </b-field>
 
         <b-field label="Gender">
-          <b-input v-model="gender" type="text" required>
+          <b-input v-model="item.gender" type="text" required>
           </b-input>
         </b-field>
 
       </section>
       <footer class="modal-card-foot">
         <button class="button" type="button" @click="$parent.close()">Batal</button>
-        <button class="button is-primary">Simpan</button>
+        <button class="button is-primary " :class="{ 'is-loading': isLoading }">Simpan</button>
       </footer>
     </div>
   </form>
@@ -46,31 +46,37 @@
 export default {
   data() {
     return {
-      sku: '',
-      name: '',
-      color: '',
-      size: '',
-      gender: ''
+      isLoading: false,
+      item: {
+        sku: '',
+        name: '',
+        color: '',
+        size: '',
+        gender: ''
+      }
     }
   },
   methods: {
     submitItem () {
+      this.isLoading = true
       this.axios({
         method: 'POST',
         url: this.$store.getters.apiUrl + '/api/item/create',
         headers: {'Authorization': 'Bearer ' + this.$store.getters.token},
         data: {
-          sku: this.sku,
-          name: this.name,
-          color: this.color,
-          size: this.size,
-          gender: this.gender
+          sku: this.item.sku,
+          name: this.item.name,
+          color: this.item.color,
+          size: this.item.size,
+          gender: this.item.gender
         }
       }).then(response => {
         console.log('berhasil submit item: ', response.data)
         this.$parent.close()
+        this.isLoading = false
       }).catch(error => {
         console.log('error on create item: ', error)
+        this.isLoading = false
       })
     }
   }
