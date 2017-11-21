@@ -3,7 +3,7 @@
     <b-tabs v-model="activeTab" type="is-boxed" expanded position="is-centered">
       <form>
 
-        <b-tab-item label="1">
+        <b-tab-item label="1. Pilih Profil Karton">
           <div class="columns is-mobile">
             <div class="column is-half is-offset-one-quarter">
               <h1 class="title">Karton Box</h1>
@@ -21,12 +21,12 @@
                 <b-input :value="cartonCode" v-model="cartonCode">
                 </b-input>
               </b-field>
-              <button @click="activeTab = 1" class="button is-primary" type="button">Lanjut</button>
+              <button @click="activeTab = 1" class="button btn-long is-medium is-primary" type="button">Lanjut</button>
             </div>
           </div>
         </b-tab-item>
 
-        <b-tab-item label="2">
+        <b-tab-item label="2. Inputkan Inner Box">
           <div class="container is-fluid">
             <div class="columns">
               <div class="column is-3 side-view">
@@ -60,7 +60,7 @@
                 <div class="box">
                   <table-input></table-input>
                 </div>
-                <button class="button btn-simpan is-primary is-medium is-pulled-right">Simpan</button>
+                <button class="button btn-long is-primary is-medium is-pulled-right">Simpan</button>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default {
   padding: 1rem 0 !important;
   padding-top: 0 !important;
 }
-.btn-simpan {
+.btn-long {
   margin-right: 2rem;
   padding-left: 2rem;
   padding-right: 2rem;

@@ -16,7 +16,7 @@
             style="cursor: pointer" 
             class="navbar-item">Login
             </router-link>
-            <b-dropdown v-if="isLoggedIn" position="is-bottom-left">
+            <b-dropdown v-else position="is-bottom-left">
               <a class="navbar-item" slot="trigger">
                 <span>Menu </span>
                 <b-icon icon="caret-down" size="is-small"></b-icon>
