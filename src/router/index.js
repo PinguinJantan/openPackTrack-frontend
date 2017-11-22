@@ -5,7 +5,8 @@ import Home from '../components/Home.vue'
 import Login from '../components/Auth/Login.vue'
 import Dashboard from '../components/Dashboard/Dashboard.vue'
 import Item from '../components/Item/Index.vue'
-import InputProduk from '../components/InputProduk/Index.vue'
+import InputProduct from '../components/InputProduct/Index.vue'
+import InputProductNotA from '../components/InputProduct/GradeNotA.vue'
 import User from '../components/User/Index.vue'
 
 import { requireAuth } from '../utils/auth'
@@ -18,7 +19,8 @@ export default new Router({
         { path: '/login', name: 'Login', component: Login },
         { path: '/dashboard', name: 'Dashboard', beforeEnter: requireAuth, component: Dashboard },
         { path: '/item', name: 'Item', beforeEnter: requireAuth, component: Item },
-        { path: '/input', name: 'Input Produk', beforeEnter: requireAuth, component: InputProduk },
+        { path: '/input-a', name: 'Input Produk A', beforeEnter: requireAuth, component: InputProduct },
+        { path: '/input-bukan-a', name: 'Input Produk Bukan A', beforeEnter: requireAuth, component: InputProductNotA },
         { path: '/user', name: 'User', beforeEnter: requireAuth, component: User }
     ],
     mode: 'history',
