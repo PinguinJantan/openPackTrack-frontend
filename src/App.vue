@@ -8,6 +8,22 @@
           </router-link>
         </div>
         <div class="navbar-menu">
+          <div v-if="this.$route.name == 'Input Produk A' || this.$route.name == 'Input Produk Bukan A'" class="navbar-start">
+            <router-link
+            to="/input-a"
+            style="cursor: pointer;"
+            class="navbar-item"
+            tag="div">
+              Input Grade A
+            </router-link>
+            <router-link
+            to="/input-bukan-a"
+            style="cursor: pointer;"
+            class="navbar-item"
+            tag="div">
+              Input Selain Grade A
+            </router-link>
+          </div>
           <div class="navbar-end">
             <router-link
             v-if="!isLoggedIn"
@@ -64,7 +80,9 @@ import logo from './assets/logo.png'
 
 export default {
   data() {
-    return { logo }
+    return { 
+      logo
+    }
   },
   computed: {
     ...mapGetters([
@@ -110,6 +128,9 @@ export default {
   width: 100%;
   height: 2.5rem;
   z-index: 19;
+}
+.navbar-item.is-active {
+  background-color: white;
 }
 .is-light {
   background-color: whitesmoke;
