@@ -8,7 +8,7 @@
           </router-link>
         </div>
         <div class="navbar-menu">
-          <div v-if="this.$route.name == 'Input Produk A' || this.$route.name == 'Input Produk Bukan A'" class="navbar-start">
+          <div v-if="this.$route.name == 'Input Produk' || this.$route.name == 'Input Produk Bukan A'" class="navbar-start">
             <router-link
             to="/input-a"
             style="cursor: pointer;"
