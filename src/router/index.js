@@ -19,7 +19,7 @@ export default new Router({
         { path: '/login', name: 'Login', component: Login },
         { path: '/dashboard', name: 'Dashboard', beforeEnter: requireAuth, component: Dashboard },
         { path: '/item', name: 'Item', beforeEnter: requireAuth, component: Item },
-        { path: '/input-a', name: 'Input Produk A', beforeEnter: requireAuth, component: InputProduct },
+        { path: '/input-a', name: 'Input Produk', beforeEnter: requireAuth, component: InputProduct },
         { path: '/input-bukan-a', name: 'Input Produk Bukan A', beforeEnter: requireAuth, component: InputProductNotA },
         { path: '/user', name: 'User', beforeEnter: requireAuth, component: User }
     ],

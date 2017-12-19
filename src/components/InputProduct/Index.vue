@@ -25,8 +25,7 @@
             </div>
           </div>
         </b-tab-item>
-
-        <b-tab-item label="2. Inputkan Inner Box">
+        <b-tab-item label="2. Inputkan Inner Box" disabled>
           <div class="container is-fluid">
             <div class="columns">
               <div class="column is-3 side-view">
@@ -41,24 +40,26 @@
                   </section>
                   <section class="section">
                     <b-field label="Kode Produk">
-                      <b-input>
+                      <b-input v-model="itemAdded.type">
                       </b-input>
                     </b-field>
                     <b-field label="Kode Unik">
-                      <b-input>
+                      <b-input v-model="itemAdded.code">
                       </b-input>
                     </b-field>
-                    <button class="button is-primary is-fullwidth" type="button">Tambah Sepatu</button>
+                    <button @click="onItemAdded" :disabled="isAddBtnDisabled" class="button is-primary is-fullwidth" type="button">Tambah Sepatu</button>
                   </section>
                   <section class="section has-text-centered">
-                    <p class="is-size-7">Kurang</p>
-                    <p class="is-size-1">{{ itemsRemaining }}</p>
+                    <p class="is-size-5">Sudah Diinputkan</p>
+                    <p class="is-size-1">{{ itemsAdded }}</p>
                   </section>
                 </div>
               </div>
               <div class="column is-9">
                 <div class="box">
-                  <table-input></table-input>
+                  <button @click="clearItem()" class="button is-danger" type="button">Kosongkan Inputan</button>
+                  <table-input :item="item" :is-loading="isLoading"></table-input>
+
                 </div>
                 <button class="button btn-long is-primary is-medium is-pulled-right">Simpan</button>
               </div>
@@ -80,15 +81,37 @@ export default {
   },
   data() {
     return {
+      // dummy
+      isLoading: false,
+      isAddBtnDisabled: false,
       activeTab: 0,
       cartonCode: "hesoyam",
-      itemsRemaining: 7,
       selectedCartonProfile: '',
+      itemAdded: {
+        type: 'asd',
+        size: 39,
+        code: 'dsa'
+      },
+      item: [
+      ],
       cartonProfiles: [
         { id: 1, name: "solid - 12" },
         { id: 2, name: "solid - 6" }
       ]
-    };
+    }
+  },
+  computed: {
+    itemsAdded() {
+      return this.item.length
+    }
+  },
+  methods: {
+    onItemAdded () {
+      this.item.push({type: this.itemAdded.type, size: this.itemAdded.size, code: this.itemAdded.code})
+    },
+    clearItem() {
+      this.item = []
+    }
   }
 };
 </script>
