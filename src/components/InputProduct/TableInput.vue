@@ -3,16 +3,16 @@
     <b-table :data="item" striped narrowed :loading="isLoading" mobile-cards>
 
       <template scope="props">
-        <b-table-column label="Jenis Sepatu">
-          {{ props.row.sku }}
+        <b-table-column label="Kode Produk">
+          {{ props.row.type }}
         </b-table-column>
 
         <b-table-column label="Ukuran">
-          {{ props.row.name }}
+          {{ props.row.size }}
         </b-table-column>
 
         <b-table-column label="Kode Unik">
-          {{ props.row.color }}
+          {{ props.row.code }}
         </b-table-column>
       </template>
 
@@ -33,18 +33,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      // dummy
-      isLoading: false,
-      item: [
-        { sku: 'inisku', name: 'ini nama', color: 'merah' },
-        { sku: 'inisku', name: 'ini nama', color: 'merah' },
-        { sku: 'inisku', name: 'ini nama', color: 'merah' },
-        { sku: 'inisku', name: 'ini nama', color: 'merah' }
-      ]
-    }
-  }
+  props: ['item', 'isLoading'],
 };
 </script>
 
