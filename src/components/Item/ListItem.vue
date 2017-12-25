@@ -76,7 +76,6 @@ export default {
       this.axios({
         method: 'get',
         url: this.$store.getters.apiUrl + '/api/item/all',
-        headers: {'Authorization': 'Bearer ' + this.$store.getters.token}
       }).then((response) => {
         console.log('lalala : ', response.data)
         if(!response.data.success){

@@ -8,6 +8,10 @@ Vue.use(Vuex)
 
 let API_URL = 'http://fansdev.nurulirfan.com'
 
+const setAuthorizationHeader = (token) => {
+  Vue.axios.defaults.headers.common.Authorization = token ? `Bearer ${token}` : ''
+}
+
 export const store = new Vuex.Store({
   state: {
     user: null,
@@ -56,8 +60,9 @@ export const store = new Vuex.Store({
   
           } else {
             commit('setToken', data.user.token);
+            setAuthorizationHeader(data.user.token);
             console.log('login berhasil');
-            
+
             commit('UPDATE_VARIABLE', {
               label: 'user',
               value: data.user,
@@ -75,7 +80,7 @@ export const store = new Vuex.Store({
     logout({ commit }, payload) {
       commit('setToken', null)
       clearIdToken()
-    }
+    },
   },
   getters: {
     token (state) {
