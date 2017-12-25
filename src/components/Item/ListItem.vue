@@ -1,6 +1,6 @@
 <template>
   <section>
-    <b-field grouped group-multiline>
+    <!-- <b-field grouped group-multiline>
       <div class="control">
         <b-switch v-model="isBordered">Bordered</b-switch>
       </div>
@@ -12,9 +12,9 @@
           <small>(collapsed rows)</small>
         </b-switch>
       </div>
-    </b-field>
+    </b-field> -->
 
-    <b-table :data="item" :bordered="isBordered" :striped="isStriped" :narrowed="isNarrowed" :loading="isLoading" :mobile-cards="hasMobileCards">
+    <b-table :data="item" striped narrowed :loading="isLoading" mobile-cards>
 
       <template scope="props">
         <b-table-column label="SKU">
@@ -38,7 +38,7 @@
         </b-table-column>
 
         <b-table-column label="Gender">
-          {{ props.row.genre }}
+          {{ props.row.gender }}
         </b-table-column>
       </template>
 
@@ -46,7 +46,7 @@
         <section class="section">
           <div class="content has-text-grey has-text-centered">
             <p>
-              <b-icon icon="sentiment_very_dissatisfied" size="is-large">
+              <b-icon icon="handshake-o" size="is-large">
               </b-icon>
             </p>
             <p>Nothing here.</p>
@@ -61,12 +61,7 @@
 export default {
   data() {
     return {
-      isEmpty: false,
-      isBordered: false,
-      isStriped: true,
-      isNarrowed: false,
       isLoading: true,
-      hasMobileCards: true,
       item: []
     }
   },
@@ -78,7 +73,7 @@ export default {
         url: this.$store.getters.apiUrl + '/api/item/all',
       }).then((response) => {
         console.log('lalala : ', response.data)
-        if(!response.data.success){
+        if(response.status != 200){
                 this.$snackbar.open({
                     message: response.data.message,
                     type: 'is-danger',
@@ -96,6 +91,7 @@ export default {
         this.isLoading = false
       }).catch((err) => {
         console.log('error when get data item: ', err)
+        this.isLoading = false
       })
     }
   },
