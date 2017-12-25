@@ -28,6 +28,9 @@ export const store = new Vuex.Store({
     resetError(state) {
       state.isError = false;
       state.errorMessage = '';
+    },
+    UPDATE_VARIABLE(state, {label, value}) {
+      Vue.set(state, label, value);
     }
   },
   actions: {
@@ -52,8 +55,14 @@ export const store = new Vuex.Store({
             resolve(false);
   
           } else {
-            commit('setToken', data.token);
+            commit('setToken', data.user.token);
             console.log('login berhasil');
+            
+            commit('UPDATE_VARIABLE', {
+              label: 'user',
+              value: data.user,
+            });
+
             resolve(true);
             // router.push('/dashboard');
           }
