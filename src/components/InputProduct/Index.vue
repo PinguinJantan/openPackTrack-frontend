@@ -44,10 +44,10 @@
                       </b-input>
                     </b-field>
                     <b-field label="Kode Unik">
-                      <b-input v-model="itemAdded.code">
+                      <b-input id="input-produk-code" v-model="itemAdded.code">
                       </b-input>
                     </b-field>
-                    <button @click="onItemAdded" :disabled="isAddBtnDisabled" class="button is-primary is-fullwidth" type="button">Tambah Sepatu</button>
+                    <button @click="pushItems" :disabled="isAddBtnDisabled" class="button is-primary is-fullwidth" type="button">Tambah Sepatu</button>
                   </section>
                   <section class="section has-text-centered">
                     <p class="is-size-5">Sudah Diinputkan</p>
@@ -58,7 +58,7 @@
               <div class="column is-9">
                 <div class="box">
                   <button @click="clearItem()" class="button is-danger" type="button">Kosongkan Inputan</button>
-                  <table-input :item="item" :is-loading="isLoading"></table-input>
+                  <table-input :item="items" :is-loading="isLoading"></table-input>
 
                 </div>
                 <button class="button btn-long is-primary is-medium is-pulled-right">Simpan</button>
@@ -83,16 +83,16 @@ export default {
     return {
       // dummy
       isLoading: false,
-      isAddBtnDisabled: false,
       activeTab: 0,
       cartonCode: "hesoyam",
       selectedCartonProfile: '',
+      inputFocus: false,
       itemAdded: {
-        type: 'asd',
+        type: 'initype',
         size: 39,
-        code: 'dsa'
+        code: 'inicode'
       },
-      item: [
+      items: [
       ],
       cartonProfiles: [
         { id: 1, name: "solid - 12" },
@@ -102,15 +102,43 @@ export default {
   },
   computed: {
     itemsAdded() {
-      return this.item.length
+      return this.items.length
+    },
+    isAddBtnDisabled() {
+      if(this.items.length >= 12){
+        return true
+      }
+    },
+    moveInputFocus() {
+      if(this.itemAdded.type != null && this.itemAdded.type.length >= 12){
+        return !this.inputFocus
+      }
+    }
+  },
+  watch: {
+    'moveInputFocus': function(e) {
+      document.getElementById("input-produk-code").focus()
+      console.log('focus berganti')
     }
   },
   methods: {
-    onItemAdded () {
-      this.item.push({type: this.itemAdded.type, size: this.itemAdded.size, code: this.itemAdded.code})
+    pushItems () {
+      if(this.itemAdded.type && this.itemAdded.code) {
+        this.items.push({type: this.itemAdded.type, size: this.itemAdded.size, code: this.itemAdded.code})
+      } else {
+        this.$toast.open({
+          message: 'Something happened correctly!',
+          type: 'is-danger'
+        })
+      }
+      for(var props in this.itemAdded) {
+        if(this.itemAdded.hasOwnProperty(props)) {
+          this.itemAdded[props] = null
+        }
+      }      
     },
     clearItem() {
-      this.item = []
+      this.items = []
     }
   }
 };
