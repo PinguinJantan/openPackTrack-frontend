@@ -57,7 +57,12 @@
               </div>
               <div class="column is-9">
                 <div class="box">
-                  <button @click="clearItem()" class="button is-danger" type="button">Kosongkan Inputan</button>
+                  <button @click="clearItem()" class="button is-danger is-outlined" type="button">
+                    <span>Kosongkan Inputan</span>
+                    <span class="icon is-small">
+                      <i class="fa fa-times"></i>
+                    </span>
+                  </button>
                   <table-input :item="items" :is-loading="isLoading"></table-input>
 
                 </div>
