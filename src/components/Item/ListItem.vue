@@ -17,28 +17,36 @@
     <b-table :data="item" striped narrowed :loading="isLoading" mobile-cards>
 
       <template scope="props">
-        <b-table-column label="SKU">
-          {{ props.row.sku }}
-        </b-table-column>
-
-        <b-table-column label="Nama">
-          {{ props.row.name }}
-        </b-table-column>
-
-        <b-table-column label="Warna">
-          {{ props.row.color }}
+        <b-table-column label="Kode Item">
+          {{ props.row.code }}
         </b-table-column>
 
         <b-table-column label="Ukuran">
           {{ props.row.size }}
         </b-table-column>
 
-        <b-table-column label="Date" centered>
-          {{ new Date(props.row.createdAt).toLocaleDateString() }}
+        <b-table-column label="SKU">
+          {{ props.row.sku.code }}
         </b-table-column>
 
-        <b-table-column label="Gender">
-          {{ props.row.gender }}
+        <b-table-column label="Nama">
+          {{ props.row.sku.name }}
+        </b-table-column>
+
+        <b-table-column label="Kategori">
+          {{ props.row.sku.category }}
+        </b-table-column>
+
+        <b-table-column label="Genre">
+          {{ props.row.sku.gender }}
+        </b-table-column>
+
+        <b-table-column label="Warna">
+          {{ props.row.sku.color }}
+        </b-table-column>
+
+        <b-table-column label="Masuk Pada" centered>
+          {{ new Date(props.row.createdAt).toLocaleDateString() }}
         </b-table-column>
       </template>
 
@@ -86,9 +94,9 @@ export default {
                     }
                 })
         } else {
-          this.item = response.data
+          this.item = response.data.item
         }
-        
+
         this.isLoading = false
       }).catch((err) => {
         console.log('error when get data item: ', err)
