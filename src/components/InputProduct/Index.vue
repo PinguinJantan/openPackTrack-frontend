@@ -132,8 +132,9 @@ export default {
         this.items.push({type: this.itemAdded.type, size: this.itemAdded.size, code: this.itemAdded.code})
       } else {
         this.$toast.open({
-          message: 'Something happened correctly!',
-          type: 'is-danger'
+          message: 'Inputan kosong!',
+          type: 'is-danger',
+          queue: false
         })
       }
       for(var props in this.itemAdded) {
