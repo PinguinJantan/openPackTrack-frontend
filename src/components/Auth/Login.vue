@@ -29,8 +29,8 @@ import { isLoggedIn } from '../../utils/auth'
 export default {
   data () {
     return {
-      username: 'sikun',
-      password: 'passwkwk'
+      username: '',
+      password: ''
     }
   },
   methods: {
