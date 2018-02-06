@@ -23,7 +23,7 @@
               <b-icon icon="handshake-o" size="is-large">
               </b-icon>
             </p>
-            <p>Nothing here.</p>
+            <p>Kosong.</p>
           </div>
         </section>
       </template>
