@@ -2,7 +2,7 @@
   <section>
     <b-table :data="item" striped narrowed :loading="isLoading" mobile-cards>
 
-      <template scope="props">
+      <template slot-scope="props">
         <b-table-column label="Kode Produk">
           {{ props.row.type }}
         </b-table-column>
@@ -36,4 +36,3 @@ export default {
   props: ['item', 'isLoading'],
 };
 </script>
-

@@ -16,7 +16,7 @@
 
     <b-table :data="item" striped narrowed :loading="isLoading" mobile-cards>
 
-      <template scope="props">
+      <template slot-scope="props">
         <b-table-column label="Kode Item">
           {{ props.row.code }}
         </b-table-column>
