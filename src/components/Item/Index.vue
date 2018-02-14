@@ -10,8 +10,8 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <button 
-              class="button is-primary" 
+              <button
+              class="button is-primary"
               @click="isComponentModalActive = true">
                 <b-icon
                 icon="plus"
@@ -20,7 +20,9 @@
                   Tambah Produk
                 </span>
               </button>
-              <button class="button is-primary is-outlined">
+              <button
+              class="button is-primary is-outlined"
+              @click="isModalImportFileActive = true">
                 <b-icon
                 icon="upload"
                 size="is-small"></b-icon>
@@ -34,7 +36,7 @@
                 size="is-small"></b-icon>
                 <span>
                   Export Data
-                </span> 
+                </span>
               </button>
             </div>
           </div>
@@ -51,7 +53,7 @@
             <ul class="menu-list">
               <li v-for="menu in menus" :key="menu.name">
                 <router-link
-                :to="{name: menu.name}" 
+                :to="{name: menu.name}"
                 :title="menu.name">
                   {{ menu.name }}
                 </router-link>
@@ -60,17 +62,23 @@
           </aside>
         </div>
         <div class="column layout-main-section">
-          
+
           <list-item></list-item>
 
         </div>
       </div>
 
 
-      <b-modal :active.sync="isComponentModalActive" 
+      <b-modal :active.sync="isComponentModalActive"
         has-modal-card
         :canCancel="false">
         <create-item></create-item>
+      </b-modal>
+
+      <b-modal :active.sync="isModalImportFileActive"
+        has-modal-card
+        :canCancel="false">
+        <import-file></import-file>
       </b-modal>
     </div>
   </section>
@@ -78,16 +86,19 @@
 
 <script>
 import CreateItem from './CreateItem.vue'
+import ImportFile from './ImportFile.vue'
 import ListItem from './ListItem.vue'
 
 export default {
   components: {
     CreateItem,
+    ImportFile,
     ListItem
   },
   data () {
     return {
       isComponentModalActive: false,
+      isModalImportFileActive: false,
       menus: this.$store.state.menu,
     }
   },
