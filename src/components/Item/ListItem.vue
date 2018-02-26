@@ -50,6 +50,7 @@
         </b-table-column>
       </template>
 
+
       <template slot="empty">
         <section class="section">
           <div class="content has-text-grey has-text-centered">
@@ -62,6 +63,24 @@
         </section>
       </template>
     </b-table>
+    <section>
+      <hr>
+      <b-field grouped group-multiline>
+          <b-field label="Items per page (10-50)">
+              <b-input type="number" v-model="pagination.perPage"></b-input>
+          </b-field>
+      </b-field>
+      <b-pagination
+          :total="pagination.total"
+          :current.sync="pagination.current"
+          :order="pagination.order"
+          :size="pagination.size"
+          :simple="pagination.isSimple"
+          :rounded="pagination.isRounded"
+          @change="pageChange"
+          :per-page="pagination.perPage">
+      </b-pagination>
+  </section>
   </section>
 </template>
 
@@ -70,15 +89,27 @@ export default {
   data() {
     return {
       isLoading: true,
-      item: []
+      item: [],
+      pagination: {
+        total: 10,
+        size: 'is-medium',
+        order: 'is-centered',
+        current: 1,
+        perPage: 10,
+        isRounded: false,
+        isSimple: false
+      }
     }
   },
 
   methods: {
-    fetchDataItem () {
+    pageChange(page){
+      this.fetchDataItem(page, this.pagination.perPage)
+    },
+    fetchDataItem (page=1, limit=10) {
       this.axios({
         method: 'get',
-        url: this.$store.getters.apiUrl + '/api/item/all',
+        url: this.$store.getters.apiUrl + '/api/item/all?page=' + page + '&limit=' + limit,
         headers: {'Authorization': 'Bearer ' + this.$store.getters.token}
       }).then((response) => {
         console.log('lalala : ', response.data)
@@ -95,6 +126,9 @@ export default {
                 })
         } else {
           this.item = response.data.item
+          this.pagination.total = response.data.pagination.itemTotal
+          this.pagination.current = response.data.pagination.currentPage
+
         }
 
         this.isLoading = false

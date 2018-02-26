@@ -58,7 +58,9 @@
               this.isLoading = true
 
               let formData = new FormData()
-              formData.append('ItemCSV', this.fileCsv)
+              formData.append('ItemCSV', this.fileCsv[0])
+
+              console.log('lololo',this.fileCsv[0], formData);
 
               this.axios({
                 method: 'POST',
@@ -67,7 +69,7 @@
                   'Authorization': 'Bearer ' + this.$store.getters.token,
                   'Content-Type': 'multipart/form-data'
                 },
-                  formData
+                data: formData
                 // data: {
                 // }
               }).then(response => {
